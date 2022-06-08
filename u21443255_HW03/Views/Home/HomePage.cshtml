@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+    <h1>Media Uploading Program</h1>
+    <h3>You can upload files on this page</h3>
+    <div class="container" style="background-color:cadetblue">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Description</h1>
+                <p>
+                    The program that we created is a file uplaoding and downloading system. <br /><br />
+                    This program consists of 5 pages. This page being the main page where files can be uploaded to 3 diffrent folders depending on the type of file. <br /><br />
+                    The next page is our files page where we will be able to view all the files that have been uploaded to the media folder. It will be displayed in a table 
+                    with the name of the folder, and then an option to download the file to the users computer, or delete the file from the media folder. <br /><br />
+                    Then we have an images and videos page. These two pages will display the images and videos that have been uploaded to the media folder. There will be 
+                    an option to download the image or video or delete the image or video. These buttons will be directly underneath the objects. When a image or video is clicked, 
+                    the screens enlarges the image or video in a fancybox and the user is then able to view the object like that. <br /><br />
+                    Lastly there is an about me page, where the students biography and picture can be found.
+                </p>
+            </div>
+
+            <div class="col-sm-6">
+                <h1>Upload files</h1>
+                <br />
+
+                @using (Html.BeginForm("Homepage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+            <div>
+                <h4>Select type of file you would like to upload:</h4><br />
+
+                @*Radio buttons. The name Type and the value gets send to the controller and with the controller we are able to send the files to the desired locations with the radiobuttons.*@
+                @Html.RadioButton("Type", "Document", true, new { id = "Document" }) Document<br />
+                @Html.RadioButton("Type", "Image", false, new { id = "Image" }) Image<br />
+                @Html.RadioButton("Type", "Video", false, new { id = "Video" }) Video<br />
+
+            </div> <br />
+
+                    <!--Code to open file explorer and select file-->
+                    <input type="file" name="newfile" id="file" value="Browse files" /><br>
+                    <!--Save the file to the selected folder-->
+                    <input type="submit" value="Save file" />
+                    @ViewBag.Message
+                }
+            </div>
+
+
+        </div>
+    </div>

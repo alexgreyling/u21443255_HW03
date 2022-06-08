@@ -1,0 +1,43 @@
+﻿@using u21443255_HW03.Models;
+@{
+    ViewBag.Title = "Files";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<form action="" method="post">
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Download</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            @foreach (FileModel file in Model)
+            {
+                <tr>
+                    <td>@file.FileName</td>
+                    <td>
+                        <!--Download button. FileDownload action result gets called when button is clicked-->
+                        <button style="background-color:lime;">
+                            @Html.ActionLink("Download", "DownloadFile",
+                             new { fileName = file.FileName })
+                        </button>
+                    </td>
+                    <td>
+                        <!--Delete button. FileDelete action result gets called when button is clicked-->
+                        <button style="background-color:red;">
+                            @Html.ActionLink("Remove", "DeleteFile",
+                           new { fileName = file.FileName },
+                           new { onclick = "return confirm('You are about to delete this file.');" })
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>
+
+

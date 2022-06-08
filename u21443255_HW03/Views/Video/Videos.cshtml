@@ -1,0 +1,36 @@
+﻿@using u21443255_HW03.Models;
+@{
+    ViewBag.Title = "Videos";
+}
+
+<h2>@ViewBag.Title</h2>
+<h2>@ViewBag.Message</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (FileModel files in Model)
+        {
+            <div class="col-md-4 gallery">
+                <a class="fancybox" href="~/myMedia/Videos/@Path.GetFileName(files.FileName)">
+                    <img src="~/myMedia/Videos/@Path.GetFileName(files.FileName)" style="height:300px; width:300px;" /><br />
+                </a>
+                <p>@files.FileName</p>
+                <button style="background-color:lime; width:100px; height:30px;">
+                    @Html.ActionLink("Download", "DownloadFile",
+                    new { fileName = files.FileName })
+                </button>
+                <button style="background-color: red; width: 100px; height: 30px;">
+                    @Html.ActionLink("Remove", "DeleteFile",
+                    new { fileName = files.FileName },
+                    new { onclick = "return confirm('You are about to delete this file.');" })
+                </button>
+            </div>
+        }
+    </div>
+        </div>
+
+    <script>
+        $(document).ready(function ($) {
+            $(".fancybox").fancybox();
+        });
+    </script>
